@@ -7,6 +7,7 @@ $objM = new Message();
 $messages = [];
 $objM->pagination($page);
 $messages = $objM->get();
+$total = $messages['total']
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,7 +77,7 @@ $messages = $objM->get();
         <div class="col bg-dark" id="main">
             <div class="container">
                 <div class="row">
-                    <?php foreach ($messages as $message) {
+                    <?php foreach ($messages['data'] as $message) {
                         include "template_part/message.php";
                     } ?>
                 </div>

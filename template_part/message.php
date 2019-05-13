@@ -4,6 +4,7 @@
     <form action="/action_page.php" method="post" id="updateMessage-<?php echo $message['id'] ?>">
         <input hidden name="action" value="updateMessage">
         <input hidden name="id" value="<?php echo $message['id'] ?>">
+        <input hidden name="page" value="<?php echo $page ?>">
         <input hidden name="name" value="<?php echo $message['name'] ?>">
         <div id="message-<?php echo $message['id'] ?>" class="form-group">
             <textarea style="display: none;width: 100%" name="message"><?php echo $message['message'] ?></textarea>

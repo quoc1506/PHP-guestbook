@@ -125,10 +125,12 @@ button.btn-padding {
     margin: 0 5px;
     border: unset;
 }
+
 .page-item.active .page-link {
     background-color: #C61F3D;
     border-color: #C61F3D;
 }
+
 .page-link:active, .page-link:focus, .page-link:hover {
     color: #C61F3D;
     background-color: unset;
@@ -139,4 +141,11 @@ button.btn-padding {
         min-height: auto;
         width: 100%;
     }
+}
+
+.page-item:first-child .page-link, .page-item:last-child .page-link {
+    border-top-left-radius: 1.2rem;
+    border-bottom-left-radius: 1.2rem;
+    border-top-right-radius: 1.2rem;
+    border-bottom-right-radius: 1.2rem;
 }
