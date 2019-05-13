@@ -4,9 +4,11 @@
     font-weight: normal;
     font-style: normal
 }
+
 body {
     font-family: "Caveat Bold";
 }
+
 .sidebar {
     background-color: #f5f5f5;
     padding: 20px;
@@ -19,6 +21,11 @@ body {
     border-top: gray solid 1px;
     width: 80px;
     opacity: 0.5;
+}
+
+.clear {
+    clear: both;
+    width: 100%;
 }
 
 .btn-normal {
@@ -47,25 +54,28 @@ button.btn-padding {
 }
 
 .adminPanel {
-    position: absolute;
     bottom: 20px;
 }
 
 .col-item {
     color: white;
+    padding: 0 50px;
 }
 
 #main {
     padding: 25px 0;
 }
+
 .span-name {
     font-family: "IBM Plex Sans";
     font-style: italic;
 }
+
 .span-time {
     font-size: 0.8rem;
     opacity: 0.8;
 }
+
 .btn-circle {
     background-color: #C61F3D;
     width: 30px;
@@ -73,6 +83,60 @@ button.btn-padding {
     border-radius: 30px;
     color: white;
 }
+
 .item-margin button {
     margin: 0 2px;
+}
+
+.modal-title {
+    width: 100%;
+    color: #C61F3D;
+    text-align: center;
+}
+
+#myModal table input {
+    border-radius: 5px;
+    border: solid 1px #CCC;
+    margin: 10px;
+    padding: 3px 10px;
+    color: #000;
+}
+
+#myModal table input[type="submit"] {
+    background: #C61F3D;
+    color: #FFF;
+    width: 180px;
+}
+
+.modal-body table {
+    text-align: center;
+    width: 100%;
+}
+
+.modal-backdrop {
+    z-index: -1;
+}
+
+.page-link {
+    border-radius: 1.2rem;
+    background-color: transparent;
+    color: white;
+    padding: 0.5rem 0.85rem;
+    margin: 0 5px;
+    border: unset;
+}
+.page-item.active .page-link {
+    background-color: #C61F3D;
+    border-color: #C61F3D;
+}
+.page-link:active, .page-link:focus, .page-link:hover {
+    color: #C61F3D;
+    background-color: unset;
+}
+
+@media screen and (max-width: 460px) {
+    .sidebar {
+        min-height: auto;
+        width: 100%;
+    }
 }

@@ -1,10 +1,12 @@
 <?php
-$message = [
-  'id' => 1,
-  'name'=>'Janie Jones',
-  'message' => 'Nemo emin ipsoam oamsd asdasmdas dasodmasd asdomasd omsda',
-  'created_at' => '21st Mar, 2017 at 09:43am'
-]
+require_once "action_page.php";
+$isAdmin = checkAdmin();
+require_once "model/Message.php";
+$page = isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+$objM = new Message();
+$messages = [];
+$objM->pagination($page);
+$messages = $objM->get();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,11 +14,11 @@ $message = [
     <title>Guest book</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
@@ -28,6 +30,7 @@ $message = [
                 <div class="nav flex-sm-column">
                     <a href="/" class="brand"><img src="/assets/images/logo.svg" width="200" height="100" alt="php"></a>
                     <span class="divider"></span>
+                    <span class="clear"></span>
                     <h3>Guest book</h3>
                     <span class="space"></span>
                     <div class="text-left">
@@ -35,7 +38,8 @@ $message = [
                     </div>
                     <input type="button" id="btnMessage" class="btn btn-common btn-padding marginVertical"
                            value="Post a message"/>
-                    <form id="formMessage" action="/action_page.php" class="marginVertical">
+                    <form id="formMessage" action="/action_page.php" class="marginVertical" method="post">
+                        <input hidden name="action" value="postMessage">
                         <div class="form-group">
                             <input type="text" class="form-control" id="name" placeholder="Enter your name" name="name"
                                    required>
@@ -50,15 +54,34 @@ $message = [
                         </div>
                     </form>
                 </div>
-            </div>
-            <div class="text-left adminPanel">
-                <a href="/admin">Admin login</a>
+                <div class="text-left adminPanel">
+                    <?php
+                    if ($isAdmin) {
+                        ?>
+                        <form action="/action_page.php" method="post">
+                            <input hidden name="action" value="adminLogout">
+                            <input type="button" class="btn" onclick="adminLogout(this)" value="Admin logout"/>
+                        </form>
+                        <?php
+                    } else {
+                        ?>
+                        <button type="button" class="btn " data-toggle="modal" data-target="#myModal">Admin login
+                        </button>
+                        <?php include "template_part/loginModal.php";
+                    }
+                    ?>
+                </div>
             </div>
         </div>
         <div class="col bg-dark" id="main">
             <div class="container">
                 <div class="row">
-                  <? include "part/message.php" ?>
+                    <?php foreach ($messages as $message) {
+                        include "template_part/message.php";
+                    } ?>
+                </div>
+                <div class="row justify-content-center" style="margin-top: 1rem">
+                    <?php include "template_part/pagination.php" ?>
                 </div>
             </div>
         </div>
