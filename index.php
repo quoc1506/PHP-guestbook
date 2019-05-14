@@ -30,6 +30,7 @@ $total = $messages['total']
             <div class="py-2 sticky-top flex-grow-1">
                 <div class="nav flex-sm-column">
                     <a href="/" class="brand"><img src="/assets/images/logo.svg" width="200" height="100" alt="php"></a>
+                    <span class="clear"></span>
                     <span class="divider"></span>
                     <span class="clear"></span>
                     <h3>Guest book</h3>

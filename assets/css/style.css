@@ -149,3 +149,7 @@ button.btn-padding {
     border-top-right-radius: 1.2rem;
     border-bottom-right-radius: 1.2rem;
 }
+
+.nav {
+    justify-content: center;
+}
